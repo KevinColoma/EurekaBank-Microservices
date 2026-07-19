@@ -1,0 +1,1 @@
+Secuencia  (No aplica para este proyecto)

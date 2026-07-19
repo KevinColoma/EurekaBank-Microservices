@@ -1,0 +1,86 @@
+@model MovimientoViewModel
+@{
+    ViewData["Title"] = "Movimientos";
+}
+
+<div class="row g-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="border-top: 4px solid #2661a9;">
+            <div class="card-body">
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+                    <div>
+                        <h1 class="h5 mb-1 fw-semibold" style="color: #2661a9;">Consultar movimientos</h1>
+                        <div class="text-muted small">Ingresa una cuenta de 8 caracteres</div>
+                    </div>
+                </div>
+
+                <form asp-action="Consultar" method="post" class="row g-2 mt-3" data-activar-spinner="true" novalidate>
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-12 col-md-5">
+                        <label asp-for="Cuenta" class="form-label fw-semibold"></label>
+                        <input asp-for="Cuenta" class="form-control" maxlength="8" style="border-color: #2661a9; border-width: 1px;" />
+                        <span asp-validation-for="Cuenta" class="text-danger small"></span>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label class="form-label">&nbsp;</label>
+                        <button type="submit" class="btn w-100" style="background-color: #2661a9; color: white; border: none;" data-boton-spinner>
+                            <span class="texto-normal">Consultar</span>
+                            <span class="texto-cargando d-none">
+                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                Consultando...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="border-top: 4px solid #95bf5a;">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead style="background-color: rgba(38, 97, 169, 0.05); border-bottom: 2px solid #2661a9;">
+                            <tr>
+                                <th style="color: #2661a9; font-weight: 600;">Fecha</th>
+                                <th style="color: #2661a9; font-weight: 600;">Tipo</th>
+                                <th style="color: #2661a9; font-weight: 600;">Acción</th>
+                                <th class="text-end" style="color: #2661a9; font-weight: 600;">Importe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Movimientos is null || Model.Movimientos.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-muted text-center py-4">Sin movimientos para mostrar.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var movimiento in Model.Movimientos.OrderByDescending(m => m.Fecha).ThenByDescending(m => m.NumeroMovimiento))
+                                {
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td>@movimiento.Fecha.ToString("yyyy-MM-dd HH:mm")</td>
+                                        <td>@movimiento.Tipo</td>
+                                        <td>
+                                            <span class="badge @(movimiento.Accion?.ToUpperInvariant() == "ENTRADA" ? "text-bg-success" : "text-bg-danger")" style="@(movimiento.Accion?.ToUpperInvariant() == "ENTRADA" ? "background-color: #95bf5a !important;" : "background-color: #dc3545 !important;")">
+                                                @movimiento.Accion
+                                            </span>
+                                        </td>
+                                        <td class="text-end fw-semibold" style="color: @(movimiento.Accion?.ToUpperInvariant() == "ENTRADA" ? "#95bf5a" : "#dc3545");">@movimiento.Importe.ToString("N2")</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

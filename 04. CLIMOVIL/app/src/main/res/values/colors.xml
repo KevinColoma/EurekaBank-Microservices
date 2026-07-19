@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores principales - Identidad Visual -->
+    <color name="color_verde">#95bf5a</color>
+    <color name="color_azul">#2661a9</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    
+    <!-- Colores secundarios -->
+    <color name="color_azul_oscuro">#1a4080</color>
+    <color name="color_verde_claro">#b8d9a0</color>
+    <color name="color_gris">#f5f5f5</color>
+    <color name="color_gris_oscuro">#666666</color>
+    <color name="color_error">#d32f2f</color>
+    
+    <!-- Colores legados (compatibilidad) -->
+    <color name="backgroub_color">#f5f5f5</color>
+    <color name="main_color">#2661a9</color>
+    <color name="main_color_back">#FFFFFF</color>
+    <color name="btn_color_return">#d32f2f</color>
+</resources>

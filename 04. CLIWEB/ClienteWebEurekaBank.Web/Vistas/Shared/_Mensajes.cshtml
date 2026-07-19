@@ -1,0 +1,24 @@
+@{
+    var mensajeExito = TempData["MensajeExito"] as string;
+    var mensajeError = TempData["MensajeError"] as string;
+}
+
+@if (!string.IsNullOrWhiteSpace(mensajeExito))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="d-flex gap-2 align-items-start">
+            <div class="flex-grow-1">@mensajeExito</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    </div>
+}
+
+@if (!string.IsNullOrWhiteSpace(mensajeError))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="d-flex gap-2 align-items-start">
+            <div class="flex-grow-1">@mensajeError</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    </div>
+}

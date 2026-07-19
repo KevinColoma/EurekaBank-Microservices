@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    tools:context="vista.MainActivity">
+
+    <!-- Background Image - Full Screen Responsive -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/monster_font"
+        android:scaleType="centerCrop"
+        android:contentDescription="Background login" />
+
+    <!-- Dark Overlay for Better Text Visibility -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000050" />
+
+    <!-- Login Form Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxWidth="380dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="16dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="32dp">
+
+                    <!-- Logo/Title Section -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="32dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CLIMOV"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/color_azul"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EurekaBank"
+                            android:textSize="14sp"
+                            android:textColor="@color/color_verde" />
+
+                        <View
+                            android:layout_width="60dp"
+                            android:layout_height="3dp"
+                            android:background="@color/color_azul"
+                            android:layout_marginTop="12dp" />
+
+                    </LinearLayout>
+
+                    <!-- Login Form Section -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Usuario Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Usuario"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_azul"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="6dp" />
+
+                            <EditText
+                                android:id="@+id/txtUsername"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:hint="Ingrese su usuario"
+                                android:inputType="text"
+                                android:padding="12dp"
+                                android:background="@drawable/edittext_style"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/color_gris_oscuro" />
+
+                        </LinearLayout>
+
+                        <!-- Contraseña Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contraseña"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_azul"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="6dp" />
+
+                            <EditText
+                                android:id="@+id/txtPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:hint="Ingrese su contraseña"
+                                android:inputType="textPassword"
+                                android:padding="12dp"
+                                android:background="@drawable/edittext_style"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/color_gris_oscuro" />
+
+                        </LinearLayout>
+
+                        <!-- IP del Servidor Field -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IP del Servidor"
+                                android:textSize="12sp"
+                                android:textColor="@color/color_azul"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="6dp" />
+
+                            <EditText
+                                android:id="@+id/txtIp"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:hint="Ej: 10.9.8.137"
+                                android:inputType="text"
+                                android:digits="0123456789."
+                                android:padding="12dp"
+                                android:background="@drawable/edittext_style"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/color_gris_oscuro" />
+
+                        </LinearLayout>
+
+                        <!-- Login Button -->
+                        <Button
+                            android:id="@+id/btnLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:text="INGRESAR"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@color/color_azul"
+                            android:layout_marginBottom="20dp" />
+
+                        <!-- Progress Bar -->
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F45EA047-85F2-46A8-B40B-A9075E68C7BD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CliEsc_Eurekabank_Rest_G02_</RootNamespace>
+    <AssemblyName>CliEsc_Eurekabank_Rest_G02_</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ec.edu.monster.controller\EurekabankController.cs" />
+    <Compile Include="ec.edu.monster.controller\LoginController.cs" />
+    <Compile Include="ec.edu.monster.model\CuentaViewModel.cs" />
+    <Compile Include="ec.edu.monster.model\DepositoRequest.cs" />
+    <Compile Include="ec.edu.monster.model\LoginViewModel.cs" />
+    <Compile Include="ec.edu.monster.model\Movimiento.cs" />
+    <Compile Include="ec.edu.monster.model\OperacionViewModel.cs" />
+    <Compile Include="ec.edu.monster.model\TransferenciaRequest.cs" />
+    <Compile Include="ec.edu.monster.model\Usuario.cs" />
+    <Compile Include="ec.edu.monster.service\EurekaService.cs" />
+    <Compile Include="ec.edu.monster.view\Deposito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Deposito.Designer.cs">
+      <DependentUpon>Deposito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Movimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Movimiento.Designer.cs">
+      <DependentUpon>Movimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Retiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Retiro.Designer.cs">
+      <DependentUpon>Retiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Transferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ec.edu.monster.view\Transferencia.Designer.cs">
+      <DependentUpon>Transferencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ec.edu.monster.view\Deposito.resx">
+      <DependentUpon>Deposito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ec.edu.monster.view\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ec.edu.monster.view\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ec.edu.monster.view\Movimiento.resx">
+      <DependentUpon>Movimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ec.edu.monster.view\Retiro.resx">
+      <DependentUpon>Retiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ec.edu.monster.view\Transferencia.resx">
+      <DependentUpon>Transferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\depositar.png" />
+    <Content Include="Resources\Ficha.jpg" />
+    <Content Include="Resources\monsterFont.jpg" />
+    <Content Include="Resources\Monsterworking.jpg" />
+    <Content Include="Resources\movimientos.png" />
+    <Content Include="Resources\retiro.png" />
+    <Content Include="Resources\transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

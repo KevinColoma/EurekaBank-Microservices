@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Panel";
+    var usuario = ViewBag.Usuario as string;
+}
+
+<div class="row g-3">
+    <div class="col-12">
+        <div class="p-4 p-md-5 rounded-3 border" style="background: linear-gradient(135deg, rgba(149, 191, 90, 0.1) 0%, rgba(38, 97, 169, 0.1) 100%); border: 2px solid #2661a9;">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                <div class="flex-grow-1">
+                    <h1 class="h4 fw-bold mb-1" style="color: #2661a9;">Panel principal</h1>
+                    <div class="text-muted">Bienvenido, <span class="fw-semibold" style="color: #95bf5a;">@usuario</span></div>
+                </div>
+                <div style="flex-shrink: 0;">
+                    <img src="/images/Monsterworking.jpg" alt="Dashboard" class="img-fluid rounded-2" style="max-width: 150px; height: auto; object-fit: cover;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-lg" style="background: linear-gradient(135deg, #95bf5a 0%, #7da84d 100%); color: white; border: none;" asp-controller="Movimientos" asp-action="Index">Consultar movimientos</a>
+            <a class="btn btn-lg btn-outline-primary" style="color: #2661a9; border-color: #2661a9; border-width: 2px;" asp-controller="Operaciones" asp-action="Deposito">Registrar depósito</a>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #95bf5a;">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="fw-semibold" style="color: #2661a9; font-size: 1.1rem;">Movimientos</div>
+                        <div class="text-muted small">Consulta por cuenta</div>
+                    </div>
+                    <a class="btn btn-sm" style="background-color: #2661a9; color: white; border: none;" asp-controller="Movimientos" asp-action="Index">Abrir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #2661a9;">
+            <div class="card-body">
+                <div class="fw-semibold mb-3" style="color: #2661a9; font-size: 1.1rem;">Operaciones</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <a class="btn btn-sm" style="background-color: #95bf5a; color: white; border: none;" asp-controller="Operaciones" asp-action="Deposito">Depósito</a>
+                    <a class="btn btn-sm" style="background-color: #2661a9; color: white; border: none;" asp-controller="Operaciones" asp-action="Retiro">Retiro</a>
+                    <a class="btn btn-sm" style="background: linear-gradient(135deg, #2661a9 0%, #95bf5a 100%); color: white; border: none;" asp-controller="Operaciones" asp-action="Transferencia">Transferencia</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

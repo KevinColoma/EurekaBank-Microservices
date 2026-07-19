@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme with CLIMOV identity -->
+    <style name="Base.Theme.WS_Eurekabank_CLIMOV" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores principales de la marca -->
+        <item name="colorPrimary">@color/color_azul</item>
+        <item name="colorPrimaryVariant">@color/color_azul_oscuro</item>
+        <item name="colorSecondary">@color/color_verde</item>
+        <item name="colorSecondaryVariant">@color/color_verde_claro</item>
+        <item name="colorError">@color/color_error</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnError">@color/white</item>
+        
+        <!-- Fondo general -->
+        <item name="android:windowBackground">@color/color_gris</item>
+    </style>
+
+    <style name="Theme.WS_Eurekabank_CLIMOV" parent="Base.Theme.WS_Eurekabank_CLIMOV" />
+</resources>

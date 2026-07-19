@@ -1,0 +1,78 @@
+﻿@using ClienteWebEurekaBank.Web.Helpers
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EurekaBank</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ClienteWebEurekaBank.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark border-bottom mb-3" style="background: linear-gradient(135deg, #2661a9 0%, #1a4478 100%);">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-semibold" asp-area="" asp-controller="Panel" asp-action="Index">
+                    <span style="color: #95bf5a; font-weight: bold;">E</span>urekaBank
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacion" aria-controls="navegacion"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navegacion" class="navbar-collapse collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @if (!string.IsNullOrWhiteSpace(Context.Session.GetString(ConstantesSesion.UsuarioAutenticado)))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Panel" asp-action="Index">Panel</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Movimientos" asp-action="Index">Movimientos</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Operaciones</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" asp-controller="Operaciones" asp-action="Deposito">Depósitos</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Operaciones" asp-action="Retiro">Retiros</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Operaciones" asp-action="Transferencia">Transferencias</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        @if (!string.IsNullOrWhiteSpace(Context.Session.GetString(ConstantesSesion.UsuarioAutenticado)))
+                        {
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="/images/Ficha.jpg" alt="Avatar" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;" />
+                                <span class="text-white-50 small fw-semibold">@Context.Session.GetString(ConstantesSesion.UsuarioAutenticado)</span>
+                            </div>
+                            <form asp-controller="Acceso" asp-action="CerrarSesion" method="post" class="m-0">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="/Vistas/Shared/_Mensajes.cshtml" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container">
+            &copy; 2026 - Cliente web EurekaBank
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

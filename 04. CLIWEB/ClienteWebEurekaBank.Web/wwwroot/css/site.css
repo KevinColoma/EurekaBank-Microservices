@@ -1,0 +1,116 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+:root {
+  --color-principal-verde: #95bf5a;
+  --color-principal-azul: #2661a9;
+  --color-blanco: #ffffff;
+  --color-negro: #000000;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--color-principal-azul);
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.navbar-brand {
+  letter-spacing: 0.2px;
+}
+
+/* Navbar personalizado con colores de marca */
+.navbar-dark {
+  background: linear-gradient(135deg, var(--color-principal-azul) 0%, #1a4478 100%) !important;
+}
+
+.navbar-dark .navbar-brand {
+  font-size: 1.5rem;
+  color: var(--color-blanco) !important;
+}
+
+/* Botones personalizados */
+.btn-dark {
+  background-color: var(--color-principal-azul);
+  border-color: var(--color-principal-azul);
+}
+
+.btn-dark:hover {
+  background-color: #1e4d7d;
+  border-color: #1e4d7d;
+}
+
+.btn-outline-dark {
+  color: var(--color-principal-azul);
+  border-color: var(--color-principal-azul);
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--color-principal-azul);
+  border-color: var(--color-principal-azul);
+}
+
+/* Botón verde alternativo */
+.btn-success {
+  background-color: var(--color-principal-verde);
+  border-color: var(--color-principal-verde);
+}
+
+.btn-success:hover {
+  background-color: #7da84d;
+  border-color: #7da84d;
+}
+
+/* Enlaces con color de marca */
+a {
+  color: var(--color-principal-azul);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1e4d7d;
+}
+
+/* Accents de color verde */
+.accent-green {
+  color: var(--color-principal-verde);
+}
+
+.bg-accent-green {
+  background-color: var(--color-principal-verde);
+}
+
+.border-accent-green {
+  border-color: var(--color-principal-verde) !important;
+}
+
+/* Accents de color azul */
+.accent-blue {
+  color: var(--color-principal-azul);
+}
+
+.bg-accent-blue {
+  background-color: var(--color-principal-azul);
+}
+
+.border-accent-blue {
+  border-color: var(--color-principal-azul) !important;
+}
+
