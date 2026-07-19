@@ -15,6 +15,15 @@ constructorAplicacion.Services.AddDistributedMemoryCache();
 constructorAplicacion.Services.Configure<ApiEurekaOpciones>(
     constructorAplicacion.Configuration.GetSection(ApiEurekaOpciones.Seccion));
 
+// Configuración del servidor (URL/IP del API) modificable en caliente desde la interfaz.
+// Se inicializa con el valor de appsettings.json y se persiste en un archivo JSON.
+constructorAplicacion.Services.AddSingleton<IServidorApiConfig>(proveedor =>
+{
+    var opcionesApi = proveedor.GetRequiredService<IOptions<ApiEurekaOpciones>>().Value;
+    var rutaArchivo = Path.Combine(constructorAplicacion.Environment.ContentRootPath, "servidor.runtime.json");
+    return new ServidorApiConfig(opcionesApi.UrlBase, rutaArchivo);
+});
+
 constructorAplicacion.Services.AddSession(opciones =>
 {
     opciones.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -31,13 +40,15 @@ constructorAplicacion.Services.Configure<RazorViewEngineOptions>(opciones =>
 
 constructorAplicacion.Services.AddHttpClient<IApiEurekaServicio, ApiEurekaServicio>((proveedor, clienteHttp) =>
 {
-    var opcionesApi = proveedor.GetRequiredService<IOptions<ApiEurekaOpciones>>().Value;
-    if (string.IsNullOrWhiteSpace(opcionesApi.UrlBase))
+    // Se lee la URL vigente del servidor (puede haberse cambiado desde la interfaz).
+    var servidorApiConfig = proveedor.GetRequiredService<IServidorApiConfig>();
+    var urlBaseActual = servidorApiConfig.UrlBase;
+    if (string.IsNullOrWhiteSpace(urlBaseActual))
     {
         throw new InvalidOperationException($"Falta configurar '{ApiEurekaOpciones.Seccion}:UrlBase' en appsettings.json");
     }
 
-    var urlBase = opcionesApi.UrlBase.TrimEnd('/') + "/";
+    var urlBase = urlBaseActual.TrimEnd('/') + "/";
     clienteHttp.BaseAddress = new Uri(urlBase, UriKind.Absolute);
     clienteHttp.Timeout = TimeSpan.FromSeconds(20);
 })

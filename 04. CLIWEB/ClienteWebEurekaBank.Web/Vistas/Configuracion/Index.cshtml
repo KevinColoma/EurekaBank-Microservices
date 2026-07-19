@@ -1,0 +1,49 @@
+@model ConfiguracionServidorViewModel
+@{
+    ViewData["Title"] = "Configurar servidor";
+}
+
+<div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-4 p-md-5">
+                <div class="mb-4 text-center">
+                    <h1 class="h3 mb-2 fw-bold" style="color: var(--color-principal-azul);">Configurar servidor</h1>
+                    <div class="text-muted">Cambia la dirección del API (por ejemplo, si el servidor host cambió de IP)</div>
+                </div>
+
+                <partial name="_Mensajes" />
+
+                <form asp-controller="Configuracion" asp-action="Index" method="post" novalidate>
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="UrlBase" class="form-label fw-semibold"></label>
+                        <input asp-for="UrlBase" class="form-control form-control-lg"
+                               placeholder="http://192.168.1.10:5069/Eureka"
+                               style="border-color: var(--color-principal-azul); border-width: 2px;" />
+                        <span asp-validation-for="UrlBase" class="text-danger small"></span>
+                        <div class="form-text">
+                            Incluye protocolo, IP/host, puerto (5069) y la ruta <code>/Eureka</code>.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100 btn-lg mb-3"
+                            style="background: linear-gradient(135deg, var(--color-principal-azul) 0%, #1a4478 100%); border: none;">
+                        Guardar
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <a asp-controller="Acceso" asp-action="IniciarSesion" class="small">Volver al inicio de sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

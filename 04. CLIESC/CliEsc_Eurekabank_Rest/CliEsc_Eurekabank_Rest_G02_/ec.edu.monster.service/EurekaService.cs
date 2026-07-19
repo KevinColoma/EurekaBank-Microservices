@@ -12,26 +12,11 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service
 {
     public class EurekaService
     {
-        // URL base de la API REST
-        private const string BaseAddress = "http://localhost:5069/Eureka/";
-
         // Mejor práctica: Usar un HttpClient estático para evitar
         // el agotamiento de sockets en aplicaciones de larga duración (como WinForms).
-        private static readonly HttpClient _httpClient;
-
-        /// <summary>
-        /// Constructor estático que inicializa el HttpClient una sola vez.
-        /// </summary>
-        static EurekaService()
-        {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(BaseAddress)
-            };
-            // Puedes configurar Headers por defecto aquí si fuesen necesarios
-            // _httpClient.DefaultRequestHeaders.Accept.Add(
-            //     new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-        }
+        // La URL base ya no es fija: se arma en cada llamada con Config.BaseUrl, de modo
+        // que la IP del servidor puede cambiarse desde la interfaz sin recompilar.
+        private static readonly HttpClient _httpClient = new HttpClient();
 
         /// <summary>
         /// 1. Autentica al usuario (POST /validar-usuario)
@@ -42,7 +27,7 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service
             try
             {
                 // Usa parámetros query en lugar de JSON body
-                var url = $"validar-usuario?usuario={Uri.EscapeDataString(usuario.NombreUsuario)}&password={Uri.EscapeDataString(usuario.Contrasena)}";
+                var url = Config.BaseUrl + $"validar-usuario?usuario={Uri.EscapeDataString(usuario.NombreUsuario)}&password={Uri.EscapeDataString(usuario.Contrasena)}";
                 var response = await _httpClient.PostAsync(url, null);
 
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -68,7 +53,7 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service
         {
             try
             {
-                var response = await _httpClient.GetAsync($"movimientos/{numCuenta}");
+                var response = await _httpClient.GetAsync(Config.BaseUrl + $"movimientos/{numCuenta}");
 
                 if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.InternalServerError)
                 {
@@ -93,7 +78,7 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service
         {
             try
             {
-                var url = $"deposito?cuenta={Uri.EscapeDataString(request.NumCuenta)}&importe={request.Importe}";
+                var url = Config.BaseUrl + $"deposito?cuenta={Uri.EscapeDataString(request.NumCuenta)}&importe={request.Importe}";
                 var response = await _httpClient.PostAsync(url, null);
 
                 if (response.StatusCode == HttpStatusCode.BadRequest)
@@ -119,7 +104,7 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service
         {
             try
             {
-                var url = $"retiro?cuenta={Uri.EscapeDataString(request.NumCuenta)}&importe={request.Importe}";
+                var url = Config.BaseUrl + $"retiro?cuenta={Uri.EscapeDataString(request.NumCuenta)}&importe={request.Importe}";
                 var response = await _httpClient.PostAsync(url, null);
 
                 if (response.StatusCode == HttpStatusCode.BadRequest)
@@ -145,7 +130,7 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service
         {
             try
             {
-                var url = $"transferencia?cuentaOrigen={Uri.EscapeDataString(request.CuentaOrigen)}&cuentaDestino={Uri.EscapeDataString(request.CuentaDestino)}&importe={request.Importe}";
+                var url = Config.BaseUrl + $"transferencia?cuentaOrigen={Uri.EscapeDataString(request.CuentaOrigen)}&cuentaDestino={Uri.EscapeDataString(request.CuentaDestino)}&importe={request.Importe}";
                 var response = await _httpClient.PostAsync(url, null);
 
                 if (response.StatusCode == HttpStatusCode.BadRequest)

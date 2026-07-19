@@ -25,6 +25,10 @@ captures/
 *.env
 !.env.example
 
+# Config de servidor generada en runtime por los clientes (IP editable en la UI)
+servidor.runtime.json
+servidor.config
+
 # ---------- General ----------
 *.log
 Thumbs.db

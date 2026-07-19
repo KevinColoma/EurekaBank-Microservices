@@ -58,6 +58,7 @@
     <Compile Include="ec.edu.monster.model\OperacionViewModel.cs" />
     <Compile Include="ec.edu.monster.model\TransferenciaRequest.cs" />
     <Compile Include="ec.edu.monster.model\Usuario.cs" />
+    <Compile Include="ec.edu.monster.service\Config.cs" />
     <Compile Include="ec.edu.monster.service\EurekaService.cs" />
     <Compile Include="ec.edu.monster.view\Deposito.cs">
       <SubType>Form</SubType>

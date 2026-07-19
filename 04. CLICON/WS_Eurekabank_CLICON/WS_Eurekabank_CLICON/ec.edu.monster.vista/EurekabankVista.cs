@@ -16,7 +16,8 @@ namespace WS_Eurekabank_CLICON.ec.edu.monster.vista
             Console.WriteLine("║                      ║");
             Console.WriteLine("╚══════════════════════╝");
             Console.WriteLine("1. Iniciar Sesion");
-            Console.WriteLine("2. Salir");
+            Console.WriteLine("2. Configurar servidor (IP)");
+            Console.WriteLine("3. Salir");
         }
 
         public void MostrarMenuConversion()

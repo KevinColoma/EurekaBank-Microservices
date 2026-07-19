@@ -35,6 +35,9 @@ namespace WS_Eurekabank_CLICON.ec.edu.monster.controlador
                             await ManejarLogin();
                             break;
                         case 2:
+                            ConfigurarServidor();
+                            break;
+                        case 3:
                             salir = true;
                             break;
                         default:
@@ -55,6 +58,21 @@ namespace WS_Eurekabank_CLICON.ec.edu.monster.controlador
                     _vista.MostrarMensaje($"❌ Error inesperado: {ex.Message}");
                 }
             }
+        }
+
+        private void ConfigurarServidor()
+        {
+            _vista.MostrarMensaje($"\nServidor actual: {Config.BaseUrl}");
+            string nuevaIp = _vista.LeerTexto("Ingrese la nueva IP o host del servidor (Enter para cancelar): ");
+
+            if (string.IsNullOrWhiteSpace(nuevaIp))
+            {
+                _vista.MostrarMensaje("Configuración sin cambios.");
+                return;
+            }
+
+            Config.Ip = nuevaIp;
+            _vista.MostrarMensaje($"✓ Servidor actualizado a: {Config.BaseUrl}");
         }
 
         private async Task ManejarLogin()

@@ -13,7 +13,8 @@ namespace WS_Eurekabank_CLICON.ec.edu.monster.modelo
     public class EurekabankService
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUri = "http://localhost:5069/Eureka";
+        // La URL base se obtiene de Config (IP configurable desde el menú, persistida en disco).
+        private static string BaseUri => Config.BaseUrl;
 
         public EurekabankService()
         {

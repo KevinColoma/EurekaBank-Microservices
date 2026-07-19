@@ -1,5 +1,6 @@
 ﻿using CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.controller;
 using CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.model;
+using CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,55 @@ namespace CliEsc_Eurekabank_Rest_G02_.ec.edu.monster.view
     public partial class Login : Form
     {
         private LoginController _loginController;
+        private TextBox _txtIp;
+
         public Login()
         {
             InitializeComponent();
             _loginController = new LoginController();
+            ConfigurarControlesServidor();
+        }
+
+        /// <summary>
+        /// Agrega un campo para la IP/host del servidor en la interfaz de login,
+        /// de modo que se pueda cambiar sin recompilar. Se precarga con la IP guardada.
+        /// </summary>
+        private void ConfigurarControlesServidor()
+        {
+            var lblServidor = new Label
+            {
+                Text = "Servidor (IP):",
+                AutoSize = true,
+                ForeColor = System.Drawing.Color.FromArgb(38, 97, 169),
+                Font = new System.Drawing.Font("Noto Sans", 10F, System.Drawing.FontStyle.Bold),
+                Location = new System.Drawing.Point(63, 495)
+            };
+
+            _txtIp = new TextBox
+            {
+                Name = "txtIp",
+                BorderStyle = BorderStyle.FixedSingle,
+                Font = new System.Drawing.Font("Noto Sans", 10F),
+                Location = new System.Drawing.Point(200, 492),
+                Size = new System.Drawing.Size(383, 27),
+                Text = Config.Ip
+            };
+
+            this.Controls.Add(lblServidor);
+            this.Controls.Add(_txtIp);
         }
 
         private async void btnIngresar_Click(object sender, EventArgs e)
         {
+            // 0. Tomar la IP/host del servidor desde la interfaz y guardarla.
+            string ip = _txtIp.Text.Trim();
+            if (string.IsNullOrEmpty(ip))
+            {
+                MessageBox.Show("Debe ingresar la IP o host del servidor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Config.Ip = ip;
+
             // 1. Crear el ViewModel con los datos de la UI
             var model = new LoginViewModel
             {
